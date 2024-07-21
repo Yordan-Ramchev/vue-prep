@@ -14,6 +14,7 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore"
   },
   "dependencies": {
+    "@faker-js/faker": "^8.4.1",
     "@heroicons/vue": "^2.0.16",
     "@vue/devtools": "^7.1.3",
     "vite-plugin-terminal": "^1.2.0",

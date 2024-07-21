@@ -1,2 +1,4 @@
-- The toggle works with v-model
-- The v-model binary modifier correctly transforms the value to 1/0 instead of true/false
+- The v-model value is an object with a username and password property
+- The data is ONLY updated in the parent when the form is submitted
+- The communication between the `LoginForm` and `App.vue` is ONLY be via the v-model directive and does NOT use any custom named events
+- When the data is updated in the parent it flows down through the v-model and immediately updates the value of the username/password fields in the form
