@@ -1,0 +1,3 @@
+- You have implemented the component successfully without changing it's current usage in `App.vue`
+- A clickable tab is displayed for each panel
+- Only the panel content corresponding to the clicked (active) tab is displayed
