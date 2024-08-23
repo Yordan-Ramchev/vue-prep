@@ -17,6 +17,7 @@ You will be working in `src/router/index.js`.
 3. Just like Vue Router's `RouterView`, it should display the proper page component based on the url path. (See main.js for the route definitions)
 4. This `RouterView` component is a little more opinionated than the real thing. It needs to display extra markup with various attribute values and event listeners along with the current page component. This gives it the style of a browser window. Ultimately the rendered markdown should look like this:
 
+
 ```html
 <div class="mockup-browser-wrapper">
   <!-- 👈 Notice the classes that need to be added-->
