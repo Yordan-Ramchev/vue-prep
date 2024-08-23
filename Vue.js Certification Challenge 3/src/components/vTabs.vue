@@ -1,16 +1,42 @@
+<script setup lang="ts">
+import { ref, provide, readonly } from 'vue'
+
+const tabs = ref<string[]>([])
+const activeTab = ref<string>()
+
+function setActive(title: string) {
+  activeTab.value = title
+}
+
+function registerTab(title: string) {
+  if(tabs.value.includes(title)) return;
+  tabs.value.push(title)
+}
+
+provide(injectionKey, {
+  withinTabs: true,
+  registerTab,
+  setActive,
+  activeTab: readonly(activeTab)
+})
+</script>
+
+<script lang="ts">
+import type { InjectionKey, Ref } from "vue";
+export const injectionKey = Symbol("vTabs") as InjectionKey<{
+  withinTabs: boolean;
+  registerTab: (title: string) => void;
+  setActive: (title: string) => void;
+  activeTab: Readonly<Ref<string | undefined>>;
+}>;
+</script>
 <template>
   <div class="tabs">
     <div class="tab-trigger-wrapper">
-      <!--
-        This should not be hardcoded but dynamic based on 
-        the title of each of the <Tab> components based in the slot
-      -->
-      <button class="tab-trigger active">Vue</button>
-      <button class="tab-trigger">React</button>
-      <button class="tab-trigger">Svelte</button>
+      <button class="tab-trigger" :class="{ active: activeTab === tab }" v-for="tab in tabs" :key="tab" @click="setActive(tab)">{{ tab}}</button>
     </div>
     <div class="tab-content-wrapper">
-      <slot></slot>
+      <slot />
     </div>
   </div>
 </template>
