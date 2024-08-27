@@ -6,7 +6,7 @@ function parsePath(url) {
   const [pre, _query] = url.split("?");
   const path = pre.replace(
     `${window.location.protocol}//${window.location.host}`,
-    ""
+    "",
   );
   const queryParams = new URLSearchParams(_query);
   const query = {};
@@ -34,7 +34,52 @@ export function createRouter(options) {
       // create a RouterView component, which will render the current route component
       // along with some extra HTML to mimic a browser
       // just like with Vue Router all the RouteRecords are set via options.routes (see main.js)
-      const RouterView = defineComponent({});
+      const RouterView = defineComponent(() => {
+        const activePage = computed(() =>
+          routes.find((route) => route.path === routePath.value),
+        );
+
+        // <div class="mockup-browser-wrapper">
+        //   <!-- 👈 Notice the classes that need to be added-->
+        //   <div class="mockup-browser-toolbar">
+        //     <!-- 👈 and here, etc-->
+        //     <div class="mockup-browser-url">
+        //       <span>http://localhost:5173</span>
+        //       <!-- 👇 The value of this input should be the current route path -->
+        //       <!-- Whenever you type into the input if a route that matches
+        //       the input value exists, you should navigate to that route -->
+        //       <input />
+        //     </div>
+        //   </div>
+        //   <div class="mockup-browser-content">
+        //     <!-- 👉 The page component rendered here 👈 -->
+        //   </div>
+        // </div>
+
+        return () => {
+          // VNode
+          return h("div", { class: "mockup-browser-wrapper" }, [
+            h(
+              "div",
+              { class: "mockup-browser-toolbar" },
+              h("div", { class: "mockup-browser-url" }, [
+                h("span", { innerHTML: `${origin}` }),
+                h("input", {
+                  value: routePath.value,
+                  onKeyup: (e) => {
+                    route.value = parsePath(`${origin}${e.target.value}`);
+                  },
+                }),
+              ]),
+            ),
+            h("div", { class: "mockup-browser-content" }, [
+              activePage.value
+                ? h(activePage.value.component)
+                : h("span", "Page not found"),
+            ]),
+          ]);
+        };
+      }, {});
 
       app.component("RouterView", RouterView);
     },
