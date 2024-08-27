@@ -66,8 +66,16 @@ export function createRouter(options) {
                 h("span", { innerHTML: `${origin}` }),
                 h("input", {
                   value: routePath.value,
-                  onKeyup: (e) => {
-                    route.value = parsePath(`${origin}${e.target.value}`);
+                  // onKeyup: (e) => {
+                  //   route.value = parsePath(`${origin}${e.target.value}`);
+                  // },
+                  onInput: (e) => {
+                    const matchingRoute = routes.find(
+                      (route) => route.path === e.target.value,
+                    );
+                    if (matchingRoute) {
+                      getRouter(route).push(e.target.value);
+                    }
                   },
                 }),
               ]),
