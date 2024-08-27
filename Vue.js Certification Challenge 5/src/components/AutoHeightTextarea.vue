@@ -1,10 +1,11 @@
 <script setup>
-import { ref, watch } from "vue";
+import { ref, watch, nextTick } from "vue";
 const modelValue = defineModel();
 const el = ref();
 
-watch(modelValue, () => {
+watch(modelValue, async () => {
   el.value.style.height = "auto";
+  await nextTick();
   el.value.style.height = el.value.scrollHeight + "px";
 });
 </script>
