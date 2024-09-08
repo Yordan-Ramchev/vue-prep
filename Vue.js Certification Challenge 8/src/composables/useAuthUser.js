@@ -1,8 +1,9 @@
 import { ref } from "vue";
 import { useRouter } from "vue-router";
 
+const user = ref();
+
 export const useAuthUser = () => {
-  const user = ref();
   const router = useRouter();
 
   // This login function is a mock function that checks if the username and password are valid
