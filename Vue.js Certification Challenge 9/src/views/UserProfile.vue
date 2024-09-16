@@ -1,7 +1,8 @@
 <script setup>
-import { useAuthUser } from "@/composables/useAuthUser";
-const { user, logout } = useAuthUser();
+import { useAuthUserStore } from "@/stores/AuthUserStore";
+const { user, logout } = useAuthUserStore();
 </script>
+
 <template>
   <div class="card" v-if="user">
     <div class="card-body">

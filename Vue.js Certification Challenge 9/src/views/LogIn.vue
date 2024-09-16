@@ -1,10 +1,10 @@
 <script setup>
-import { useAuthUser } from "@/composables/useAuthUser";
+import { useAuthUserStore } from "@/stores/AuthUserStore.js";
 import { useRouter } from "vue-router";
 import { ref } from "vue";
 
 const router = useRouter();
-const { login } = useAuthUser();
+const { login } = useAuthUserStore();
 
 const error = ref("");
 
@@ -16,7 +16,7 @@ const form = ref({
 async function handleSubmit() {
   try {
     await login({ ...form.value });
-    router.push("/");
+    await router.push("/");
   } catch (err) {
     error.value = err.message;
   }
@@ -45,7 +45,7 @@ async function handleSubmit() {
         >
           {{ error }}
         </div>
-        <button class="btn btn-primary">Login</button>
+        <button class="btn btn-primary" type="submit">Login</button>
       </div>
     </div>
   </form>

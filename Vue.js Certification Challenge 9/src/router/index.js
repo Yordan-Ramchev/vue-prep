@@ -1,7 +1,7 @@
 import { createWebHistory, createRouter } from "vue-router";
 import LogInView from "../views/LogIn.vue";
 import UserProfileView from "../views/UserProfile.vue";
-import { useAuthUser } from "@/composables/useAuthUser";
+import { useAuthUserStore } from "../stores/AuthUserStore.js";
 
 const routes = [
   { path: "/", component: UserProfileView, meta: { requiresAuth: true } },
@@ -14,8 +14,10 @@ export const router = createRouter({
 });
 
 router.beforeEach((to, from) => {
-  const { user } = useAuthUser();
-  if (to.meta.requiresAuth && !user.value) {
+  const { isLoggedIn } = useAuthUserStore();
+
+  // console.log(to.meta.requiresAuth && !user?.value);
+  if (to.meta.requiresAuth && !isLoggedIn) {
     return "/login";
   }
 });
