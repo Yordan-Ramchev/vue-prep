@@ -36,7 +36,8 @@ function toggleActivePerson(id: string) {
         <!-- row 1 -->
         <PeopleTableRow
           v-for="person in people"
-          @click="toggleActivePerson(person.id)"
+          @click.stop="toggleActivePerson(person.id)"
+          v-memo="[person.id === activePerson]"
           :key="person.id"
           :person="person"
           :activeId="activePerson"
