@@ -1,6 +1,12 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, computed } from "vue";
 const loading = ref(false);
+import markdownit from "markdown-it";
+
+const md = markdownit({
+  html: false, // disallow all HTML tags
+});
+
 const comments = ref<
   {
     body: string;
@@ -38,6 +44,15 @@ function addComment() {
 
   newComment.value = "";
 }
+
+const formattedComments = computed(() => {
+  return comments.value.map((comment) => {
+    return {
+      ...comment,
+      body: md.render(comment.body),
+    };
+  });
+});
 </script>
 <template>
   <div class="py-4">
@@ -45,7 +60,7 @@ function addComment() {
     <div v-if="loading" class="text-gray-400">Loading...</div>
     <ul class="space-y-4">
       <li
-        v-for="comment in comments"
+        v-for="comment in formattedComments"
         :key="comment.id"
         class="p-4 rounded-lg shadow-md bg-base-100"
       >
