@@ -1,0 +1,43 @@
+[
+  {
+    "id": "58e0441f-4c7d-43c2-8cbf-d3e88d7ac222",
+    "title": "Understanding TypeScript",
+    "body": "TypeScript is a powerful tool for writing robust JavaScript code. It introduces types to JavaScript to improve developer productivity and code quality.",
+    "published": true,
+    "author": {
+      "name": "Alice Johnson",
+      "bio": "Alice is a seasoned web developer with a passion for teaching and sharing knowledge about TypeScript and JavaScript."
+    }
+  },
+  {
+    "id": "f7b3f1b4-4b7d-4b3b-8b3b-3b7b4b3b7b4b",
+    "title": "Advanced CSS Techniques",
+    "body": "This post explores advanced CSS techniques including Flexbox, Grid, and CSS animations. Learn how to create responsive and visually appealing web designs.",
+    "published": false,
+    "author": {
+      "name": "Bob Smith",
+      "bio": "Bob is a front-end developer who specializes in creating beautiful, responsive designs using modern CSS."
+    }
+  },
+
+  {
+    "id": "59be81a0-a0a3-467a-ac72-0fe3a43bee41",
+    "title": "Mastering Git and GitHub",
+    "body": "Git is a version control system, and GitHub is a platform for hosting and collaborating on Git repositories. Learn how to use both tools effectively.",
+    "published": true,
+    "author": {
+      "name": "Dave Wilson",
+      "bio": "Dave is a software engineer with a knack for version control systems and collaboration tools. He loves helping teams streamline their workflows."
+    }
+  },
+  {
+    "id": "c1b2a3b4-5c6d-7e8f-9a0b-1c2d3e4f5a6b",
+    "title": "Building APIs with Node.js",
+    "body": "Node.js allows you to build scalable network applications using JavaScript. This post covers the fundamentals of building APIs with Node.js and Express.",
+    "published": false,
+    "author": {
+      "name": "Eve Brown",
+      "bio": "Eve is a backend developer with a focus on building high-performance APIs and microservices using Node.js and other modern technologies."
+    }
+  }
+]

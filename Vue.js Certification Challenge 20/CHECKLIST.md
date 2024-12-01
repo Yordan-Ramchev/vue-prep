@@ -1,0 +1,6 @@
+- 'The `type` prop only accepts the strings: "success", "error", "warning", or "info"'
+- The `type` prop defaults to `info`
+- The `dismisable` prop only accepts a boolean
+- The `dismissable` prop defaults to `false`
+- The `dismiss` emit (event) only supports a payload of the literal type `true`
+- You can see that your IDE recognizes these types when hovering over the props and events on the usage of `AppAlerts` in `App.vue`.
