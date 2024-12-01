@@ -4,6 +4,12 @@ import { ref, computed } from "vue";
 interface Post {
   id: number;
   title: string;
+  body: string;
+  published: boolean;
+  author: {
+    name: string;
+    bio: string;
+  };
 }
 
 // you should explicitly type this 👇
@@ -11,7 +17,7 @@ const posts = ref<Post[]>([]);
 
 // try explicitly typing this too
 // (even though it's not strictly necessary) 👇
-const numberOfPosts = computed<number>(() => posts.value.length);
+const numberOfPosts = computed((): number => posts.value.length);
 
 async function loadPosts() {
   const res = await fetch("/api.json");
