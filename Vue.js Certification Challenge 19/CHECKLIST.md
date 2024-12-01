@@ -1,1 +1,3 @@
-- the urls are sanitized and no arbitrary JavaScript is run when clicking on the unsafe link
+- You've explicitly typed the `posts`
+- You've explicitly typed the `numberOfPosts`
+- The TS errors in the template are gone

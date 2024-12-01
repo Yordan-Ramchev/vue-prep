@@ -1,33 +1,23 @@
 ---
 difficulty: 1
 training: true
-chapter: "Chapter 5: Best Practices"
+chapter: "Chapter 6: TypeScript"
 tags: vue
 ---
 
-# Fix the URL Injection Vulnerability
+# Type the Component Data Challenge
 
-In this challenge, we've created a menu of links.
-For the sake of the challenge, pretend they were provided by a user,
-saved to, and retrieved from a database.
-
-One user has provided an unsafe link that executes arbitrary JavaScript.
-
-Ideally, you should sanitize this data before it enters the DB on your backend.
-
-Since we don't have a backend for the exercise, make it safe by sanitizing it
-before displaying the links to the page.
-
-> 💡 HINT: We have pre-installed [@braintree/sanitize-url](https://www.npmjs.com/package/@braintree/sanitize-url) to the project
+In this challenge, we're loading blog posts from an API endpoint. Because the reactive `posts` array does NOT have any initial hardcoded data it cannot be implicitly typed. Therefore, you'll need to explicitly type it as an array of posts that have the same properties from the API endpoint (see `/public/api.json`).
 
 ## Requirements
 
-1. Sanitize the "user provided" URLs to prevent an attack via link injection
+1. Type the `posts` ref as an array of `Post` objects.
+2. Try explicitly typing the computed prop for practice (even though it can be easily implicitly typed)
 
-## Screenshot of the Link Injection Attack
+## Screenshot of TS Errors Before Explicit Typing
 
-![Screenshot of the xss attack](https://images.certificates.dev/csvd-training-code-challenge-19-before.gif)
+![Screenshot of the solution](https://images.certificates.dev/csvd-training-code-challenge-before-20.png)
 
-## Screenshot of the Solution
+## Screenshot of TS Errors Resolved
 
-![Screenshot of the solution](https://images.certificates.dev/csvd-training-code-challenge-19.gif)
+![Screenshot of the solution](https://images.certificates.dev/csvd-training-code-challenge-20.png)

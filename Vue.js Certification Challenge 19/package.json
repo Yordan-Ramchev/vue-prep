@@ -14,12 +14,8 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore"
   },
   "dependencies": {
-    "@braintree/sanitize-url": "^7.0.2",
     "@heroicons/vue": "^2.0.16",
-    "@jitbit/htmlsanitizer": "^2.0.2",
-    "@tailwindcss/typography": "^0.5.13",
     "@vue/devtools": "^7.1.2",
-    "markdown-it": "^14.1.0",
     "vite-plugin-terminal": "^1.2.0",
     "vue": "^3.4.24",
     "vue-router": "4"

@@ -1,41 +1,34 @@
 <script setup lang="ts">
 import { ref, computed } from "vue";
-import { sanitizeUrl } from "@braintree/sanitize-url";
 
-const links = ref([
-  {
-    label: "Certificates.dev",
-    url: "https://certificates.dev/",
-  },
-  {
-    label: "Vue Docs",
-    url: "https://vuejs.org/",
-  },
-  {
-    label: "Vue School",
-    url: "https://vueschool.io/",
-  },
-  {
-    label: "Unsafe Link from Untrusted User",
-    url: "javascript: alert('script kitties attack!! 🐱⚔️')",
-  },
-]);
+interface Post {
+  id: number;
+  title: string;
+}
 
-const safeLinks = computed(() =>
-  links.value.map((link) => ({
-    label: link.label,
-    url: sanitizeUrl(link.url),
-  })),
-);
+// you should explicitly type this 👇
+const posts = ref<Post[]>([]);
+
+// try explicitly typing this too
+// (even though it's not strictly necessary) 👇
+const numberOfPosts = computed<number>(() => posts.value.length);
+
+async function loadPosts() {
+  const res = await fetch("/api.json");
+  posts.value = await res.json();
+}
+
+loadPosts();
 </script>
 <template>
   <div class="page">
-    <ul class="menu bg-base-200 rounded-box">
-      <li v-for="link in safeLinks" :key="link.url">
-        <a :href="link.url">
-          {{ link.label }}
-        </a>
-      </li>
-    </ul>
+    <div>
+      <h1>Posts ({{ numberOfPosts }})</h1>
+      <ul>
+        <li v-for="post in posts" :key="post.id">
+          {{ post.title }}
+        </li>
+      </ul>
+    </div>
   </div>
 </template>
