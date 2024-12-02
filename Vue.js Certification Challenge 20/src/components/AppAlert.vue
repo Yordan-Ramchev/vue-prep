@@ -2,21 +2,22 @@
 import { computed, ref } from "vue";
 import { Icon } from "@iconify/vue";
 
-const props = defineProps({
-  type: {
-    type: String,
-    default: "info",
-  },
-  dismissible: {
-    type: Boolean,
-    default: false,
-  },
+interface Alert {
+  type?: "info" | "success" | "warning" | "error";
+  dismissible: boolean;
+}
+
+const props = withDefaults(defineProps<Alert>(), {
+  type: "info",
+  dismissible: false,
 });
 
-const emit = defineEmits(["dismiss"]);
+const emit = defineEmits<{
+  dismiss: [payload: true];
+}>();
 
 const classes = computed(() => {
-  const map = {
+  const map: { [key: string]: string } = {
     info: "alert-info",
     success: "alert-success",
     warning: "alert-warning",
@@ -48,6 +49,7 @@ const icon = computed(() => {
   }[props.type];
 });
 </script>
+
 <template>
   <Transition>
     <div v-if="!dismissed" role="alert" class="alert" :class="classes">
