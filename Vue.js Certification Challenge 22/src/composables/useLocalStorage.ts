@@ -4,16 +4,20 @@
 // 4. The returned value updates when the related data in localStorage updates
 // 5. The data in localStorage should updates when the ref value updates
 // 6. When you type in the input in the running app, the value syncs to local storage (and vice versa)
-import { ref, watch, onMounted } from "vue";
+import { ref, watch } from "vue";
 
 export function useLocalStorage(key: string, defaultValue: string) {
-  const value = ref(defaultValue);
+  const storage = ref(localStorage.getItem(key) || defaultValue);
 
-  onMounted(() => {
-    value.value = localStorage.getItem(key) || "";
-  });
+  watch(storage, (nawValue) => localStorage.setItem(key, storage.value));
 
-  watch(value, (nawValue) => localStorage.setItem(key, value.value));
+  window.addEventListener("storage", handleStorageEvent);
 
-  return value;
+  function handleStorageEvent(event: StorageEvent) {
+    if (event.key === key) {
+      storage.value = event.newValue || "";
+    }
+  }
+
+  return storage;
 }
